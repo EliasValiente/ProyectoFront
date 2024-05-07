@@ -1,8 +1,9 @@
+ /* Estilo global */
 :root{
     color-scheme: light dark;
- }
- /* Estilo global */
+}
 
+/* Body  */
 html, body {
     height: 100%;  /* Importante para que el height del body sea el 100% de la pantalla */
     margin: 0;
@@ -23,282 +24,123 @@ footer {
 }
 
  
- 
- /*  BODY    */
- 
- 
-   
- .mid-section{
-    margin-top: 50px;
-    margin-bottom: 50px;
-    margin-left: 25px;
- }
- 
- 
- .photo-section{
-    flex: 60%;
- }
- 
- 
- .form-section{
-    flex: 30%;
-    margin-right: 100px;
- }
- 
- 
- h3{
-    color: whitesmoke;
-    font-family: Nunito sans;
- }
- 
- 
- h4{
-    color: whitesmoke;
-    font-family: Nunito sans;
- }
- 
- 
- .p{
-    color: whitesmoke;
-    font-family: Nunito sans;
-    size: 15px;
- }
-
-
- 
- .footer {
-    border-top: solid 1px #FCA311;
-    background-color: #000000;
-    color: white;
-    width: 100%;
-    text-align: center;  /* Centrar el texto si es necesario */
+h3{
+   color: whitesmoke;
+   font-family: Nunito sans;
 }
 
- 
- 
- 
- .footer a{
-    color: whitesmoke;
- }
- 
- 
- .footer a:hover{
-    color: #FCA311;
- }
- 
- 
- .footer-fomrs{
-    border-top:solid 1px #FCA311;
-    background-color: #000000;
-    position: absolute;
-    align-self: baseline;
-    bottom: 0;
-    width: 100%;
-    height: auto;
-    color: white;
- }
- .footer-fomrs a{
-    color: whitesmoke;
- }
- 
- 
- .footer-fomrs a:hover{
-    color: #FCA311;
- }
- 
- 
- 
- 
- .buton-princ {
-    border: none;
-    outline: none;
-    border-radius: 5px;
-    cursor: pointer;
-    padding: 15px 15px;
-    font-size: 1rem;
-    background: #FCA311;
-    color: #000000;
-    margin: 15px 15px;
- }
- .buton-princ:hover, .button:focus {
-    background: #dd9a2d;
- }
- 
- 
- /*  NAVBAR  */
- 
- 
- .nav-content{
-    display: flex;
-    justify-content: space-between;  
-    padding: 1rem;
-    margin: 0;  /* Cambiado de auto para asegurar que no haya márgenes extra */
-    background-color: #000000; 
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000; /* Asegura que el navbar esté sobre otros elementos */
- }
- 
- 
- 
- 
- /*  LOGO y TITULO*/
- .logoTitle{
-    display: flex;
-    align-items: center;
- }
- .page-logo{
-    width: 4rem;
-    height: 4rem;
- }
- .watchWiseName{
-    font-family: 'Unica One', 'Josefin Sans' ;
-    color: #FCA311;
-    font-size: 40px;
-    text-decoration: none !important;  
- }
- .watchWiseName:hover{
-    font-family: 'Unica One', 'Josefin Sans' ;
-    color: #FCA311;
-    font-size: 40px;
-    text-decoration: none !important;
- }
- 
- 
- /*  BARRA BUSQUEDA   */
- .search-box{
-    width: fit-content;
-    height: fit-content;
-    position: relative;
- }
- .input-search{
-    height: 50px;
-    width: 50px;
-    border-style: none;
-    padding: 10px;
-    font-size: 18px;
-    letter-spacing: 2px;
-    outline: none;
-    border-radius: 25px;
-    transition: all .5s ease-in-out;
-    background-color: transparent;
-    padding-right: 40px;
-    color:#fff;
- }
- .input-search::placeholder{
-    color:#FCA311;
-    font-size: 18px;
-    letter-spacing: 2px;
-    font-weight: 500;
- }
- .btn-search{
-    width: 70px;
-    height: 50px;
-    border-style: none ;
-    font-size: 20px;
-    font-weight: bold;
-    outline:none;
-    cursor: pointer;
-    border-radius: 50%;
-    position: absolute;
-    right: 0px;
-    color:#ffffff ;
-    background-color:transparent;
-    pointer-events: painted; 
- }
- .btn-search:focus ~ .input-search{
-    width: 300px;
-    border-radius: 0px;
-    background-color: transparent;
-    border-bottom:1px solid #FCA311;
-    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
- }
- .input-search:focus{
-    width: 300px;
-    border-radius: 0px;
-    background-color: transparent;
-    border-bottom:1px solid #FCA311;
-    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
- }
- 
- 
- /*  USER    */
- .nav-icon{
-    width: 3rem;
-    height: 3rem;
- }
- 
- /*  FOTO GRID  */
 
+h4{
+   color: whitesmoke;
+   font-family: Nunito sans;
+}
+
+
+.p{
+   color: whitesmoke;
+   font-family: Nunito sans;
+   size: 15px;
+}
+
+/*  FOTO GRID  */
+.mid-section{
+   margin-top: 50px;
+   margin-bottom: 50px;
+   margin-left: 25px;
+}
+
+
+.photo-section{
+   flex: 60%;
+}
+
+
+.form-section{
+   flex: 30%;
+   margin-right: 100px;
+}
 #photo-container {
-    flex-wrap: wrap;
-    
+   flex-wrap: wrap;
 }
 
 .column {
-    flex: 25%;
-    max-width: 25%;
-    padding: 0 4px;
+   flex: 25%;
+   max-width: 25%;
+   padding: 0 4px;
 }
-  
+ 
 .column .photo {
-    margin-top: 8px;
-    vertical-align: middle;
+   margin-top: 8px;
+   vertical-align: middle;
 }
 
 .column .photo img{
-    width: 30%;
-    height: auto;
-    border-radius: 4px;
+   width: 30%;
+   height: auto;
+   border-radius: 4px;
 }
 
 
 #photo-container .photo:hover .title{
-    opacity: 1;
-    
+   opacity: 1;
+   
 }
 
+.buton-princ {
+   border: none;
+   outline: none;
+   border-radius: 5px;
+   cursor: pointer;
+   padding: 15px 15px;
+   font-size: 1rem;
+   background: #FCA311;
+   color: #000000;
+   margin: 15px 15px;
+}
+.buton-princ:hover, .button:focus {
+   background: #dd9a2d;
+}
+
+
+
 @media screen and (max-width: 1000px) {
-    .row{
-        flex-direction: column;
-    }
-    .photo-section{
-        display: flex;
-        align-content: center;
-        justify-content: center;
-    }
+   .row{
+       flex-direction: column;
+   }
+   .photo-section{
+       display: flex;
+       align-content: center;
+       justify-content: center;
+   }
 }
 
 
 @media only screen and (max-width: 600px) {
-    .column {
-        flex: 100%;
-        max-width: 100%;
-    }
+   .column {
+       flex: 100%;
+       max-width: 100%;
+   }
 }
 
 @media only screen and (min-width: 600px) {
-    .column {
-        flex: 50%;
-        max-width: 100%;
-    }
+   .column {
+       flex: 50%;
+       max-width: 100%;
+   }
 }
 
 @media only screen and (min-width: 768px) {
-    .column {
-        flex: 33.33%;
-        max-width: 100%;
-    }
+   .column {
+       flex: 33.33%;
+       max-width: 100%;
+   }
 }
 
 @media only screen and (min-width: 992px) {
-    .column {
-        flex: 25%;
-        max-width: 100%;
-    }
+   .column {
+       flex: 25%;
+       max-width: 100%;
+   }
 }
 
 @media only screen and (min-width: 1200px) {
@@ -308,4 +150,6 @@ footer {
 @media only screen and (min-width: 1500px) {
 
 }
+
+
  

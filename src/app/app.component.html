@@ -1,4 +1,4 @@
- <!--    NAVBAR  -->
+ <!--    NAVBAR     -->
  <nav>
     <div class="nav-content">
         <!--    Logo y nombre   -->
@@ -9,7 +9,7 @@
             <a class="watchWiseName" href="#">watchwise</a>
         </div>
         <!--    Busqueda    -->
-        <div class="search-box">
+        <div class="search-box" *ngIf="showSearchbox">
             <form role="search">
                 <button class="btn-search"><i class="bi bi-search"></i></button>
                 <input type="text" class="input-search" placeholder="Type to Search...">
@@ -23,9 +23,9 @@
     </div>
 </nav>
 
-<router-outlet><router-outlet/> 
-<app-landing></app-landing>    
+<router-outlet><router-outlet/>
 
+<!--    FOOTER      -->
 <footer class="footer text-center bg-body-tertiary">
 
     <!-- Grid container -->

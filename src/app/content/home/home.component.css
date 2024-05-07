@@ -1,0 +1,20 @@
+.pelicula{
+    text-decoration: none;
+}
+.pelicula img{
+    width: 10%;
+    height: auto;
+    border-radius: 4px;
+    margin: 15px;
+    
+}
+
+.separador{
+    color: whitesmoke;
+    font-family: Nunito sans;
+    border-bottom:1px solid #FCA311;
+    width: 65%; /* 800px */
+    font-family: 'Unica One', 'Josefin Sans' ;
+
+}
+

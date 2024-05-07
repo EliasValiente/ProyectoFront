@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 import { VisibilityService } from '../../services/visibility/visibility.service'; 
 
 @Component({
-  selector: 'app-register',
+  selector: 'app-pricing',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  templateUrl: './pricing.component.html',
+  styleUrl: './pricing.component.css',
 })
-export class RegisterComponent implements OnInit, OnDestroy {
+export class PricingComponent implements OnInit, OnDestroy {
 
   constructor(private visibilityService: VisibilityService) {}
 
