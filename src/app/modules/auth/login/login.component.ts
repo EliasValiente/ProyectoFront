@@ -1,15 +1,16 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { VisibilityService } from '../../services/visibility/visibility.service'; 
+import { VisibilityService } from '../../../shared/services/visibility/visibility.service';
+
 
 @Component({
-  selector: 'app-register',
+  selector: 'app-login',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.css'
 })
-export class RegisterComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(private visibilityService: VisibilityService) {}
 

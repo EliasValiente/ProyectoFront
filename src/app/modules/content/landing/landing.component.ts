@@ -46,4 +46,6 @@ export class LandingComponent implements AfterViewInit {
       <img loading="lazy" alt="Photo ${photoId}" src="assets/images/imgs_${carpeta}/photo_${photoId}.jpg" />
     </a>`;
   }
+
+  
 }

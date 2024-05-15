@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { VisibilityService } from '../../services/visibility/visibility.service'; 
+import { VisibilityService } from '../../../shared/services/visibility/visibility.service'; 
 
 @Component({
   selector: 'app-pricing',
