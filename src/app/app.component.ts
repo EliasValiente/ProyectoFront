@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, importProvidersFrom } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { VisibilityService } from './shared/services/visibility/visibility.service';
@@ -8,7 +8,8 @@ import { RegisterComponent } from './modules/auth/register/register.component';
 import { HomeComponent } from './modules/content/home/home.component';
 import { LandingComponent } from './modules/content/landing/landing.component';
 import { ApiService } from './shared/services/api.service'; // Importar el servicio
-import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http'; // Importar HttpClientModule
+import { HttpClientModule } from '@angular/common/http'; // Importar HttpClientModule
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,8 @@ import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/
     HomeComponent, 
     LandingComponent, 
     CommonModule,
-    HttpClientModule // Añadir HttpClientModule a los imports
+    HttpClientModule, // Añadir HttpClientModule a los imports
+    ReactiveFormsModule,
   ],
   providers: [
     ApiService
