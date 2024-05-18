@@ -1,25 +1,29 @@
+
 <section class="mid-section">
     <div class="contenedor-formularios" id="formLogReg">
         <!-- Iniciar sesion-->
         <div id="form-inicio-sesion">
             <h2>Iniciar Sesión</h2>
-            <form action="home.html">
+            <form (ngSubmit)="login()">
                 <div class="contenedor-input">
                     <label>
                         Usuario <span class="req">*</span>
                     </label>
-                    <input type="text" required>
+                    <input type="text" [(ngModel)]="email" name="email" required>
                 </div>
 
                 <div class="contenedor-input">
                     <label>
                         Contraseña <span class="req">*</span>
                     </label>
-                    <input type="password" required>
+                    <input type="password" [(ngModel)]="password" name="password" required>
                 </div>
                 <p class="forgot"><a href="#">Olvidé mi contraseña</a></p>
-                <input type="submit" class="button button-block" value="Iniciar Sesión" id="validatedLogin">
+                <button type="submit" class="button button-block">Iniciar Sesión</button>
             </form>
+            <div *ngIf="errorMessage" class="error-message">
+                {{ errorMessage }}
+            </div>
         </div>
     </div>
 </section>

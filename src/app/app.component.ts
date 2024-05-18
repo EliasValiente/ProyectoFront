@@ -7,8 +7,8 @@ import { LoginComponent } from './modules/auth/login/login.component';
 import { RegisterComponent } from './modules/auth/register/register.component';
 import { HomeComponent } from './modules/content/home/home.component';
 import { LandingComponent } from './modules/content/landing/landing.component';
-import { ApiService } from './shared/services/api.service'; // Importar el servicio
-import { HttpClientModule } from '@angular/common/http'; // Importar HttpClientModule
+import { ApiService } from './shared/services/api.service'; 
+import { HttpClientModule } from '@angular/common/http'; 
 import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -21,7 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HomeComponent, 
     LandingComponent, 
     CommonModule,
-    HttpClientModule, // Añadir HttpClientModule a los imports
+    HttpClientModule, 
     ReactiveFormsModule,
   ],
   providers: [

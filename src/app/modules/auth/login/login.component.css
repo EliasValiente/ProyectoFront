@@ -132,6 +132,10 @@ input:focus {
     text-align: right;
     margin-bottom: 20px;
 }
+.error-message {
+    color: red;
+    margin-top: 20px;
+}
 
 @media screen and (max-width: 500px) {
     .fila-arriba div {
