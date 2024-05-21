@@ -35,9 +35,15 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   login(): void {
     this.loginService.login(this.email, this.password).subscribe(
-      () => {
-        this.errorMessage = ''; // Clear any previous error messages
-        this.router.navigate(['/home']);
+      response => {
+        this.errorMessage = ''; 
+        const user = response.user; 
+        console.log(response);
+        if (user.roles.includes('ROLE_ADMIN')) {
+          window.location.href = 'http://localhost:8000/admin/dashboard'; 
+        } else {
+          this.router.navigate(['/home']);
+        }
       },
       error => {
         console.error('Login failed', error);
