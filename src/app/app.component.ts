@@ -2,7 +2,7 @@ import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { VisibilityService } from './shared/services/visibility/visibility.service';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { LoginComponent } from './modules/auth/login/login.component';
 import { RegisterComponent } from './modules/auth/register/register.component';
 import { HomeComponent } from './modules/content/home/home.component';
@@ -10,6 +10,9 @@ import { LandingComponent } from './modules/content/landing/landing.component';
 import { ApiService } from './shared/services/api.service'; 
 import { HttpClientModule } from '@angular/common/http'; 
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginService } from './modules/auth/services/login.service';
+import { response } from 'express';
+import { error } from 'console';
 
 @Component({
   selector: 'app-root',
@@ -39,6 +42,8 @@ export class AppComponent implements OnDestroy, OnInit {
 
   constructor(
     private visibilityService: VisibilityService,
+    private loginService: LoginService,
+    private router: Router,
     private apiService: ApiService
   ) {
     this.visibilitySubscription = this.visibilityService.showSearchBox$.subscribe(visible => {
@@ -74,8 +79,17 @@ export class AppComponent implements OnDestroy, OnInit {
 
   logout() {
     console.log('Cerrar sesión');
-    // Agrega aquí la lógica para cerrar sesión, por ejemplo, redirigir al login o limpiar la sesión
+    this.loginService.logout().subscribe(
+      response => {
+        console.log('sesion cerrada', response);
+        this.router.navigate(['/landing']);
+      },
+      error => {
+        console.error('fallo al cerrar sesion', error)
+      }
+    );
   }
+  
 
   ngOnDestroy() {
     this.visibilitySubscription.unsubscribe();
