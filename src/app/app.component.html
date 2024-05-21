@@ -1,5 +1,5 @@
- <!--    NAVBAR     -->
- <nav>
+<!--    NAVBAR     -->
+<nav>
     <div class="nav-content">
         <!--    Logo y nombre   -->
         <div class="logoTitle">
@@ -16,66 +16,67 @@
             </form>
         </div>
 
-        <button type="button" class="btn" id="registerButton"><!--onclick="showForm()" -->
-            <img src="assets/images/icons/userColor.svg" class="nav-icon" alt="Ajustes de usuario">
-        </button>
-
+        <!-- Dropdown Button -->
+        <div class="dropdown" *ngIf="showSearchbox">
+            <button type="button" class="btn" id="registerButton" (click)="toggleDropdown($event)">
+                <img src="assets/images/icons/userColor.svg" class="nav-icon" alt="Ajustes de usuario">
+            </button>
+            <div class="dropdown-content" [class.show]="isDropdownOpen" aria-labelledby="registerButton">
+                <button class="dropdown-item" (click)="logout()">Cerrar sesión</button>
+            </div>
+        </div>
     </div>
 </nav>
 
-<router-outlet><router-outlet/>
+<router-outlet></router-outlet>
 
 <!--    FOOTER      -->
 <footer class="footer text-center bg-body-tertiary">
-
     <!-- Grid container -->
     <div class="container pt-4">
-            <!-- Section: Social media -->
-            <section class="mb-4">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+            <!-- Facebook -->
+            <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="https://www.facebook.com" role="button"
+               data-mdb-ripple-color="dark">
+                <i class="bi bi-facebook" style="color: #FCA311;"></i></a>
 
-                <!-- Facebook -->
-                <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="https://www.facebook.com" role="button"
-                    data-mdb-ripple-color="dark">
-                    <i class="bi bi-facebook" style="color: #FCA311;"></i></a>
+            <!-- Twitter -->
+            <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="https://twitter.com" role="button"
+               data-mdb-ripple-color="dark">
+                <i class="bi bi-twitter" style="color: #FCA311;"></i></a>
 
-                <!-- Twitter -->
-                <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="https://twitter.com" role="button"
-                    data-mdb-ripple-color="dark">
-                    <i class="bi bi-twitter" style="color: #FCA311;"></i></a>
+            <!-- Google -->
+            <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="https://mail.google.com/" role="button"
+               data-mdb-ripple-color="dark">
+                <i class="bi bi-google" style="color: #FCA311;"></i>
+            </a>
 
-                <!-- Google -->
-                <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="https://mail.google.com/" role="button"
-                    data-mdb-ripple-color="dark">
-                    <i class="bi bi-google" style="color: #FCA311;"></i>
-                </a>
+            <!-- Instagram -->
+            <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="https://www.instagram.com" role="button"
+               data-mdb-ripple-color="dark">
+                <i class="bi bi-instagram" style="color: #FCA311;"></i>
+            </a>
 
-                <!-- Instagram -->
-                <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="https://www.instagram.com" role="button"
-                    data-mdb-ripple-color="dark">
-                    <i class="bi bi-instagram" style="color: #FCA311;"></i>
-                </a>
+            <!-- Accesibilidad -->
+            <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="accesibilidad.html" role="button"
+               data-mdb-ripple-color="dark">
+                <i class="bi bi-universal-access" style="color: #FCA311;"></i>
+            </a>
 
-                <!-- Accesibilidad -->
-                <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="accesibilidad.html" role="button"
-                    data-mdb-ripple-color="dark">
-                    <i class="bi bi-universal-access" style="color: #FCA311;"></i>
-                </a>
+            <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="mapaweb.html" role="button"
+               data-mdb-ripple-color="dark">
+                <i class="bi bi-globe" style="color: #FCA311;"></i>
+            </a>
+        </section>
+        <!-- Section: Social media -->
+    </div>
+    <!-- Grid container -->
 
-                <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="mapaweb.html" role="button"
-                    data-mdb-ripple-color="dark">
-                    <i class="bi bi-globe" style="color: #FCA311;"></i>
-                </a>
-
-
-            </section>
-            <!-- Section: Social media -->
-        </div>
-        <!-- Grid container -->
-
-        <!-- Copyright -->
-        <div class="text-center p-3" style="color: aliceblue;">
-            © 2024 Copyright:
-            <a class="" href="#">watchwise.com</a>
-        </div>
-        <!-- Copyright -->
+    <!-- Copyright -->
+    <div class="text-center p-3" style="color: aliceblue;">
+        © 2024 Copyright:
+        <a class="" href="#">watchwise.com</a>
+    </div>
+    <!-- Copyright -->
 </footer>

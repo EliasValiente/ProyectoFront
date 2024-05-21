@@ -1,4 +1,6 @@
-import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
+import { VisibilityService } from '../../../shared/services/visibility/visibility.service';
 
 @Component({
   selector: 'app-landing',
@@ -7,7 +9,14 @@ import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.css'
 })
-export class LandingComponent implements AfterViewInit {
+export class LandingComponent implements AfterViewInit, OnInit, OnDestroy {
+
+  constructor(
+    private visibilityService: VisibilityService,
+    private router: Router
+  ) {}
+
+   
   @ViewChild('photoContainer') photoContainer!: ElementRef;
 
   ngAfterViewInit() {
@@ -15,7 +24,7 @@ export class LandingComponent implements AfterViewInit {
   }
 
   navigateTo(url: string): void {
-    window.location.replace(url);
+    this.router.navigate(['/'+url]);
   }
 
   loadPhotos(): void {
@@ -45,6 +54,18 @@ export class LandingComponent implements AfterViewInit {
     return `<a href="#" class="photo">
       <img loading="lazy" alt="Photo ${photoId}" src="assets/images/imgs_${carpeta}/photo_${photoId}.jpg" />
     </a>`;
+  }
+
+  ngOnInit() {
+    setTimeout(() => {
+      this.visibilityService.setShowSearchBox(false);
+    });
+  }
+
+  ngOnDestroy() {
+    setTimeout(() => {
+      this.visibilityService.setShowSearchBox(true);
+    });
   }
 
   

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { VisibilityService } from './shared/services/visibility/visibility.service';
@@ -35,8 +35,12 @@ export class AppComponent implements OnDestroy, OnInit {
   showSearchbox: boolean = true;
   private visibilitySubscription: Subscription;
   message: string = ''; // Inicializar la propiedad con un valor por defecto
+  isDropdownOpen = false; // Estado del dropdown
 
-  constructor(private visibilityService: VisibilityService, private apiService: ApiService) {
+  constructor(
+    private visibilityService: VisibilityService,
+    private apiService: ApiService
+  ) {
     this.visibilitySubscription = this.visibilityService.showSearchBox$.subscribe(visible => {
       this.showSearchbox = visible;
     });
@@ -53,6 +57,24 @@ export class AppComponent implements OnDestroy, OnInit {
         console.error('Error al obtener el mensaje de la API', error);
       }
     );
+  }
+
+  @HostListener('document:click', ['$event'])
+  handleClick(event: Event) {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.dropdown')) {
+      this.isDropdownOpen = false;
+    }
+  }
+
+  toggleDropdown(event: Event) {
+    event.stopPropagation();
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  logout() {
+    console.log('Cerrar sesión');
+    // Agrega aquí la lógica para cerrar sesión, por ejemplo, redirigir al login o limpiar la sesión
   }
 
   ngOnDestroy() {
