@@ -52,7 +52,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       this.registroService.registrarUsuario(this.registroForm.value).subscribe(
         response => {
           console.log('Usuario registrado con éxito: ', response);
-          this.router.navigate(['/home']);
+          this.router.navigate(['/prices']);
         },
         error => {
           console.log('Error al registrar usuario: ', error);

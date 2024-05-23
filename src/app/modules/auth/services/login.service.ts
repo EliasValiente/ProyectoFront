@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,28 +12,29 @@ export class LoginService {
   private loginUrl = 'http://localhost:8000/api/login';
   private logoutUrl = 'http://localhost:8000/api/logout';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   login(email: string, password: string): Observable<any> {
-    const body = { email, password };
-    const options = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      }),
-      withCredentials: true
-    };
-
-    return this.http.post<any>(this.loginUrl, body, options);
+    return this.http.post<any>(this.loginUrl, { email, password }).pipe(
+      tap(() => {
+        localStorage.setItem('isLoggedIn', 'true');
+      })
+    );
   }
 
-  logout(): Observable<any> {
-    const options = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      }),
-      withCredentials: true
-    };
+  logout(): void {
+    this.http.post(this.logoutUrl, {}).subscribe(
+      () => {
+        localStorage.removeItem('isLoggedIn');
+        this.router.navigate(['/login']);
+      },
+      error => {
+        console.error('Logout failed', error);
+      }
+    );
+  }
 
-    return this.http.post<any>(this.logoutUrl, {}, options);
+  isLoggedIn(): boolean {
+    return localStorage.getItem('isLoggedIn') === 'true';
   }
 }

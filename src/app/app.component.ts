@@ -78,6 +78,8 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   logout() {
+    this.loginService.logout()
+    /** 
     console.log('Cerrar sesión');
     this.loginService.logout().subscribe(
       response => {
@@ -88,6 +90,7 @@ export class AppComponent implements OnDestroy, OnInit {
         console.error('fallo al cerrar sesion', error)
       }
     );
+    */
   }
   
 
