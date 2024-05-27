@@ -1,27 +1,50 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { VisibilityService } from '../../../shared/services/visibility/visibility.service';
+import { MovieService } from './service/movie-service.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements OnInit, OnDestroy{
+export class HomeComponent implements OnInit, OnDestroy {
+  popularMovies: any[] = [];
+  recommendedMovies: any[] = [];
+  watchedMovies: any[] = [];
 
-  constructor(private visibilityService: VisibilityService) {}
+  constructor(
+    private visibilityService: VisibilityService,
+    private movieService: MovieService
+  ) {}
 
-   ngOnInit() {
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.visibilityService.setShowSearchBox(true);
+    });
+
+    this.loadMovies();
+  }
+
+  ngOnDestroy(): void {
     setTimeout(() => {
       this.visibilityService.setShowSearchBox(true);
     });
   }
 
-  ngOnDestroy() {
-    setTimeout(() => {
-      this.visibilityService.setShowSearchBox(true);
-    });
-  }
+  loadMovies(): void {
 
+    this.movieService.getPopularMovies().subscribe(data => {
+      this.popularMovies = data;
+    });
+
+    this.movieService.getRecommendedMovies().subscribe(data => {
+      this.recommendedMovies = data;
+    });
+
+
+  }
 }

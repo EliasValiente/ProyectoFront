@@ -1,71 +1,27 @@
+<!-- src/app/home/home.component.html -->
 <section class="mid-section">
-
-    <h3 class="separador">películas más populares:</h3>
-
-    <div style="flex-direction: row;" class="wrapper">
-        <a href="#" class="pelicula">
-            <img src="assets/images/imgs_1/photo_1.jpg"/>
-        </a>
-        <a href="#" class="pelicula">
-            <img src="assets/images/imgs_1/photo_2.jpg"/>
-        </a>
-        <a href="#" class="pelicula">
-            <img src="assets/images/imgs_1/photo_3.jpg"/>
-        </a>
-        <a href="#" class="pelicula">
-            <img src="assets/images/imgs_1/photo_4.jpg"/>
-        </a>
-        <a href="#" class="pelicula">
-            <img src="assets/images/imgs_1/photo_5.jpg"/>
-        </a>
-        <a href="#" class="pelicula">
-            <img src="assets/images/imgs_1/photo_6.jpg"/>
-        </a>
-        <a href="#" class="pelicula">
-            <img src="assets/images/imgs_1/photo_7.jpg"/>
-        </a>
-        <a href="#" class="pelicula">
-            <img src="assets/images/imgs_1/photo_8.jpg"/>
-        </a>
-    </div>
-
-    <h3 class="separador">Películas que podrían interesarte:</h3>
+    <h3 class="separador">Películas más populares</h3>
     <div style="flex-direction: row;">
-        <a href="#" class="pelicula">
-            <img src="assets/images/imgs_2/photo_1.jpg"/>
-        </a>
-        <a href="#" class="pelicula">
-            <img src="assets/images/imgs_2/photo_2.jpg"/>
-        </a>
-        <a href="#" class="pelicula">
-            <img src="assets/images/imgs_2/photo_3.jpg"/>
-        </a>
-        <a href="#" class="pelicula">
-            <img src="assets/images/imgs_2/photo_4.jpg"/>
-        </a>
-        <a href="#" class="pelicula">
-            <img src="assets/images/imgs_2/photo_5.jpg"/>
-        </a>
-        <a href="#" class="pelicula">
-            <img src="assets/images/imgs_2/photo_6.jpg"/>
-        </a>
-        <a href="#" class="pelicula">
-            <img src="assets/images/imgs_2/photo_7.jpg"/>
-        </a>
-        <a href="#" class="pelicula">
-            <img src="assets/images/imgs_2/photo_8.jpg"/>
-        </a>
+      <a *ngFor="let movie of popularMovies" [routerLink]="['/movie', movie.id]" class="pelicula">
+        <img [src]="'assets/images/' + movie.imagen" />
+      </a>
     </div>
-
+  
+    <h3 class="separador">Podrían interesarte</h3>
+    <div style="flex-direction: row;">
+      <a *ngFor="let movie of recommendedMovies" [routerLink]="['/movie', movie.id]" class="pelicula">
+        <img [src]="'assets/images/' + movie.imagen" />
+      </a>
+    </div>
+  
     <h3 class="separador">Películas que has visto:</h3>
     <div style="flex-direction: row;">
-        <a href="#" class="pelicula">
-            <img src="assets/images/imgs_1/photo_9.jpg"/>
-        </a>
-        <a href="#" class="pelicula">
-            <img src="assets/images/imgs_2/photo_9.jpg"/>
-        </a>
+      <a href="#" class="pelicula">
+        <img src="assets/images/imgs_1/photo_9.jpg"/>
+      </a>
+      <a href="#" class="pelicula">
+        <img src="assets/images/imgs_2/photo_9.jpg"/>
+      </a>
     </div>
-
-
-</section>
+  </section>
+  

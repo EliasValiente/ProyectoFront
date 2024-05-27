@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginService } from './modules/auth/services/login.service';
 import { response } from 'express';
 import { error } from 'console';
+import { PlayerComponent } from './modules/content/player/player.component';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,8 @@ import { error } from 'console';
     LoginComponent, 
     RegisterComponent, 
     HomeComponent, 
-    LandingComponent, 
+    LandingComponent,
+    PlayerComponent, 
     CommonModule,
     HttpClientModule, 
     ReactiveFormsModule,

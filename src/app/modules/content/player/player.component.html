@@ -1,0 +1,19 @@
+
+<div class="player-container" *ngIf="movie">
+    <h1>{{ movie.titulo }}</h1>
+    <video class="video-reproductor" id="video-reproductor" controls (play)="onPlay()">
+      <source [src]="'/assets/' + movie.video" type="video/mp4">
+      Tu navegador no soporta el tag de video.
+    </video>
+    <div class="movie-details">
+      <img [src]="'/assets/images/' + movie.imagen" alt="{{ movie.titulo }}">
+      <div class="movie-info">
+        <p><strong>Director:</strong> {{ movie.director }}</p>
+        <p><strong>Categoría:</strong> {{ movie.categoria }}</p>
+        <p><strong>Duración:</strong> {{ movie.duracion }} minutos</p>
+        <p><strong>Sinopsis:</strong> {{ movie.sinopsis }}</p>
+      </div>
+    </div>
+    <button class="home-button" (click)="goHome()">Volver al Home</button>
+  </div>
+  
