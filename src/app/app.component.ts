@@ -8,12 +8,14 @@ import { RegisterComponent } from './modules/auth/register/register.component';
 import { HomeComponent } from './modules/content/home/home.component';
 import { LandingComponent } from './modules/content/landing/landing.component';
 import { ApiService } from './shared/services/api.service'; 
-import { HttpClientModule } from '@angular/common/http'; 
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'; 
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginService } from './modules/auth/services/login.service';
 import { response } from 'express';
 import { error } from 'console';
 import { PlayerComponent } from './modules/content/player/player.component';
+import { AuthService } from './services/auth.service';
+import { JwtInterceptor } from './interceptors/jwt-interceptor.service';
 
 @Component({
   selector: 'app-root',
@@ -30,7 +32,10 @@ import { PlayerComponent } from './modules/content/player/player.component';
     ReactiveFormsModule,
   ],
   providers: [
-    ApiService
+    ApiService,
+    AuthService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],

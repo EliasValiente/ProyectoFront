@@ -1,40 +1,32 @@
+// src/app/services/login.service.ts
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
+import { AuthService } from '../../../services/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
   
-  private loginUrl = 'http://localhost:8000/api/login';
-  private logoutUrl = 'http://localhost:8000/api/logout';
+  constructor(private authService: AuthService, private router: Router) {}
 
-  constructor(private http: HttpClient, private router: Router) {}
-
-  login(email: string, password: string): Observable<any> {
-    return this.http.post<any>(this.loginUrl, { email, password }).pipe(
-      tap(() => {
-        localStorage.setItem('isLoggedIn', 'true');
+  login(username: string, password: string): Observable<any> {
+    return this.authService.login({ username, password }).pipe(
+      tap(response => {
+        localStorage.setItem('token', response.token);
       })
     );
   }
 
   logout(): void {
-    this.http.post(this.logoutUrl, {}).subscribe(
-      () => {
-        localStorage.removeItem('isLoggedIn');
-        this.router.navigate(['/login']);
-      },
-      error => {
-        console.error('Logout failed', error);
-      }
-    );
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
   }
 
   isLoggedIn(): boolean {
-    return localStorage.getItem('isLoggedIn') === 'true';
+    return !!localStorage.getItem('token');
   }
 }

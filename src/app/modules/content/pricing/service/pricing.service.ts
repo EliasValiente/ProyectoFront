@@ -1,6 +1,6 @@
 // suscripcion.service.ts
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 interface Suscripcion {
@@ -13,7 +13,6 @@ interface Suscripcion {
   caracteristicas: string[];
 }
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -24,10 +23,14 @@ export class PricingService {
   constructor(private http: HttpClient) {}
 
   getSuscripciones(): Observable<Suscripcion[]> {
-    return this.http.get<Suscripcion[]>(this.url);
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<Suscripcion[]>(this.url, { headers });
   }
 
   subscribeToSuscripcion(suscripcionId: number): Observable<any> {
-    return this.http.post<any>(this.subscribeUrl, { suscripcionId });
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post<any>(this.subscribeUrl, { suscripcionId }, { headers });
   }
 }

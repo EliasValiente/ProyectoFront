@@ -14,7 +14,7 @@ import { LoginService } from '../services/login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  email: string = '';
+  username: string = '';
   password: string = '';
   errorMessage: string = '';
 
@@ -33,39 +33,20 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onLogin(): void {
-    this.loginService.login(this.email, this.password).subscribe(
+    this.loginService.login(this.username, this.password).subscribe(
       response => {
-        const user = response.user; 
-      console.log(response);
-      if (user.roles.includes('ROLE_ADMIN')) {
-        window.location.href = 'http://localhost:8000/admin/dashboard'; 
-      } else {
-        this.router.navigate(['/home']);
-      }
+        this.errorMessage = ''; 
+        console.log(response);
+        if (response.roles.includes('ROLE_ADMIN')) {
+          window.location.href = 'http://localhost:8000/admin/dashboard'; 
+        } else {
+          this.router.navigate(['/home']);
+        }
       },
       error => {
-        this.errorMessage = 'Login failed: ' + (error.error.message || 'Unknown error');
+        console.error('Login failed', error);
+        this.errorMessage = 'Login failed: ' + (error.error.error || 'Unknown error');
       }
     );
   }
 }
-/** 
-login(): void {
-  this.loginService.login(this.email, this.password).subscribe(
-    response => {
-      this.errorMessage = ''; 
-      const user = response.user; 
-      console.log(response);
-      if (user.roles.includes('ROLE_ADMIN')) {
-        window.location.href = 'http://localhost:8000/admin/dashboard'; 
-      } else {
-        this.router.navigate(['/home']);
-      }
-    },
-    error => {
-      console.error('Login failed', error);
-      this.errorMessage = 'Login failed: ' + (error.error.error || 'Unknown error');
-    }
-  );
-}
-*/

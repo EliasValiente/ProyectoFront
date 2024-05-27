@@ -1,19 +1,16 @@
+// src/app/services/register.service.ts
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthService } from '../../../services/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegisterService {
 
-  private apiUrl = 'http://localhost:8000/api/registration'; 
-
-  constructor(private http: HttpClient) { }
+  constructor(private authService: AuthService) {}
 
   registrarUsuario(usuario: any): Observable<any> {
-    return this.http.post(this.apiUrl, usuario, {
-      headers: { 'Content-Type': 'application/json' }
-    });
+    return this.authService.register(usuario);
   }
 }

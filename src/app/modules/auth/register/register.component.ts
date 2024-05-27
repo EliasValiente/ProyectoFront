@@ -19,15 +19,15 @@ export class RegisterComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private registroService: RegisterService,
+    private registerService: RegisterService,
     private visibilityService: VisibilityService
   ) {}
 
   ngOnInit() {
     this.registroForm = this.fb.group({
       nombre: ['', Validators.required],
-      apellido: ['', Validators.required],
-      usuario: ['', Validators.required],
+      apellidos: ['', Validators.required], 
+      userName: ['', Validators.required],  
       tarjeta: ['', [Validators.required, Validators.pattern('^[0-9]{16}$')]],
       cvv: ['', [Validators.required, Validators.pattern('^[0-9]{3,4}$')]],
       fechaValidez: ['', Validators.required],
@@ -49,7 +49,23 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     if (this.registroForm.valid) {
-      this.registroService.registrarUsuario(this.registroForm.value).subscribe(
+      if (this.registroForm.value.password !== this.registroForm.value.repetirPassword) {
+        console.error('Las contraseñas no coinciden');
+        return;
+      }
+
+      const usuario = {
+        nombre: this.registroForm.value.nombre,
+        apellidos: this.registroForm.value.apellidos,
+        userName: this.registroForm.value.userName,
+        tarjeta: this.registroForm.value.tarjeta,
+        cvv: this.registroForm.value.cvv,
+        fechaValidez: this.registroForm.value.fechaValidez,
+        email: this.registroForm.value.email,
+        password: this.registroForm.value.password
+      };
+
+      this.registerService.registrarUsuario(usuario).subscribe(
         response => {
           console.log('Usuario registrado con éxito: ', response);
           this.router.navigate(['/prices']);
@@ -58,8 +74,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
           console.log('Error al registrar usuario: ', error);
         }
       );
-    }else{
-      console.log('no valido')
+    } else {
+      console.log('Formulario no válido');
     }
   }
 }
