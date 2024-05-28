@@ -15,13 +15,10 @@
     </div>
   
     <h3 class="separador">Películas que has visto:</h3>
-    <div style="flex-direction: row;">
-      <a href="#" class="pelicula">
-        <img src="assets/images/imgs_1/photo_9.jpg"/>
-      </a>
-      <a href="#" class="pelicula">
-        <img src="assets/images/imgs_2/photo_9.jpg"/>
-      </a>
-    </div>
+  <div style="flex-direction: row;">
+    <a *ngFor="let movie of watchedMovies" [routerLink]="['/movie', movie.id]" class="pelicula">
+      <img [src]="'assets/images/' + movie.imagen" />
+    </a>
+  </div>
   </section>
   

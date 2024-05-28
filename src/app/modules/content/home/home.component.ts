@@ -45,6 +45,10 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.recommendedMovies = data;
     });
 
+    this.movieService.getWatchedMovies().subscribe(data => {
+      this.watchedMovies = data;
+    })
+
 
   }
 }
