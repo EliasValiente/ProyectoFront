@@ -1,24 +1,50 @@
 <!-- src/app/home/home.component.html -->
 <section class="mid-section">
-    <h3 class="separador">Películas más populares</h3>
-    <div style="flex-direction: row;">
-      <a *ngFor="let movie of popularMovies" [routerLink]="['/movie', movie.id]" class="pelicula">
-        <img [src]="'assets/images/' + movie.imagen" />
-      </a>
+  <ng-container *ngIf="popularMovies.length > 0 || recommendedMovies.length > 0 || watchedMovies.length > 0; else noMovies">
+
+    <app-search-bar (search)="onSearch($event)"></app-search-bar>
+    
+    <ng-container *ngIf="searchedMovies.length > 0">
+      <h3 class="separador">Resultados de la búsqueda</h3>
+      <div style="flex-direction: row;">
+        <a *ngFor="let movie of searchedMovies" [routerLink]="['/movie', movie.id]" class="pelicula">
+          <img [src]="'assets/images/' + movie.imagen" />
+        </a>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="popularMovies.length > 0">
+      <h3 class="separador">Películas más populares</h3>
+      <div style="flex-direction: row;">
+        <a *ngFor="let movie of popularMovies" [routerLink]="['/movie', movie.id]" class="pelicula">
+          <img [src]="'assets/images/' + movie.imagen" />
+        </a>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="recommendedMovies.length > 0">
+      <h3 class="separador">Podrían interesarte</h3>
+      <div style="flex-direction: row;">
+        <a *ngFor="let movie of recommendedMovies" [routerLink]="['/movie', movie.id]" class="pelicula">
+          <img [src]="'assets/images/' + movie.imagen" />
+        </a>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="watchedMovies.length > 0">
+      <h3 class="separador">Películas que has visto:</h3>
+      <div style="flex-direction: row;">
+        <a *ngFor="let movie of watchedMovies" [routerLink]="['/movie', movie.id]" class="pelicula">
+          <img [src]="'assets/images/' + movie.imagen" />
+        </a>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <ng-template #noMovies>
+    <div class="error-message">
+      <h3>No disponible</h3>
+      <p>Debe estar registrado para acceder a este contenido</p>
     </div>
-  
-    <h3 class="separador">Podrían interesarte</h3>
-    <div style="flex-direction: row;">
-      <a *ngFor="let movie of recommendedMovies" [routerLink]="['/movie', movie.id]" class="pelicula">
-        <img [src]="'assets/images/' + movie.imagen" />
-      </a>
-    </div>
-  
-    <h3 class="separador">Películas que has visto:</h3>
-  <div style="flex-direction: row;">
-    <a *ngFor="let movie of watchedMovies" [routerLink]="['/movie', movie.id]" class="pelicula">
-      <img [src]="'assets/images/' + movie.imagen" />
-    </a>
-  </div>
-  </section>
-  
+  </ng-template>
+</section>

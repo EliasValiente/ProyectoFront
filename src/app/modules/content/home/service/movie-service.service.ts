@@ -1,7 +1,7 @@
 // src/app/services/movie.service.ts
 
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -39,5 +39,11 @@ export class MovieService {
   getMovieById(id: number): Observable<any> {
     const headers = this.getHeaders();
     return this.http.get(`/api/movies/${id}`, { headers });
+  }
+
+  getMovieByTitle(title: string): Observable<any>{
+    const headers = this.getHeaders();
+    const params = new HttpParams().set('title', title);
+    return this.http.get(`/api/movies/title`, { headers, params });
   }
 }

@@ -2,7 +2,7 @@ import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { VisibilityService } from './shared/services/visibility/visibility.service';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { LoginComponent } from './modules/auth/login/login.component';
 import { RegisterComponent } from './modules/auth/register/register.component';
 import { HomeComponent } from './modules/content/home/home.component';
@@ -16,6 +16,8 @@ import { error } from 'console';
 import { PlayerComponent } from './modules/content/player/player.component';
 import { AuthService } from './services/auth.service';
 import { JwtInterceptor } from './interceptors/jwt-interceptor.service';
+import { AccessibilityComponent } from './modules/content/accessibility/accessibility.component';
+import { WebmapComponent } from './modules/content/webmap/webmap.component';
 
 @Component({
   selector: 'app-root',
@@ -26,10 +28,13 @@ import { JwtInterceptor } from './interceptors/jwt-interceptor.service';
     RegisterComponent, 
     HomeComponent, 
     LandingComponent,
-    PlayerComponent, 
+    PlayerComponent,
+    AccessibilityComponent,
+    WebmapComponent, 
     CommonModule,
     HttpClientModule, 
     ReactiveFormsModule,
+    RouterModule
   ],
   providers: [
     ApiService,
@@ -85,19 +90,7 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   logout() {
-    this.loginService.logout()
-    /** 
-    console.log('Cerrar sesión');
-    this.loginService.logout().subscribe(
-      response => {
-        console.log('sesion cerrada', response);
-        this.router.navigate(['/landing']);
-      },
-      error => {
-        console.error('fallo al cerrar sesion', error)
-      }
-    );
-    */
+    this.loginService.logout();
   }
   
 

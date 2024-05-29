@@ -18,3 +18,32 @@
 
 }
 
+/* Estilo para el contenedor del mensaje de error */
+.error-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 700px; /* Ajusta la altura según tus necesidades */
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    margin: 20px;
+    padding: 20px;
+    text-align: center;
+}
+  
+/* Estilo para el título del mensaje de error */
+.error-message h3 {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: bold;
+    color:#000000;
+}
+
+/* Estilo para el párrafo del mensaje de error */
+.error-message p {
+    margin-top: 10px;
+    font-size: 1em;
+    color: #000000;
+}

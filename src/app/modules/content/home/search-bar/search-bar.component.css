@@ -1,0 +1,28 @@
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+  }
+  
+  .search-container input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .search-container button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #fca311;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .search-container button:hover {
+    background-color: #d89000;
+  }
+  

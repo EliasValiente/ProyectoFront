@@ -1,0 +1,32 @@
+.header {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 1em;
+}
+
+.main {
+    max-width: 800px;
+    color: white !important;
+    margin: 20px auto;
+    margin-bottom: 300px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.section {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.h2 {
+    color: #fca311;
+}
+
+.correo-accesibilidad{
+    color: #fff;
+}
+
+.correo-accesibilidad:hover{
+    color: #fca311;
+}

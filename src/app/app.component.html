@@ -3,19 +3,11 @@
     <div class="nav-content">
         <!--    Logo y nombre   -->
         <div class="logoTitle">
-            <a href="#">
+            <a [routerLink]="'/'">
                 <img src="assets/images/logos/logoColor.svg" class="page-logo" alt="Logo de la página web">
             </a>
-            <a class="watchWiseName" href="#">watchwise</a>
+            <a class="watchWiseName" [routerLink]="'/'">watchwise</a>
         </div>
-        <!--    Busqueda    -->
-        <div class="search-box" *ngIf="showSearchbox">
-            <form role="search">
-                <button class="btn-search"><i class="bi bi-search"></i></button>
-                <input type="text" class="input-search" placeholder="Type to Search...">
-            </form>
-        </div>
-
         <!-- Dropdown Button -->
         <div class="dropdown" *ngIf="showSearchbox">
             <button type="button" class="btn" id="registerButton" (click)="toggleDropdown($event)">
@@ -59,12 +51,12 @@
             </a>
 
             <!-- Accesibilidad -->
-            <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="accesibilidad.html" role="button"
+            <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" [routerLink]="'/accessibility'" role="button"
                data-mdb-ripple-color="dark">
                 <i class="bi bi-universal-access" style="color: #FCA311;"></i>
             </a>
 
-            <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="mapaweb.html" role="button"
+            <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" [routerLink]="'/web-map'" role="button"
                data-mdb-ripple-color="dark">
                 <i class="bi bi-globe" style="color: #FCA311;"></i>
             </a>
