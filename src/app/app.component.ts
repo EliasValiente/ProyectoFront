@@ -19,9 +19,10 @@ import { JwtInterceptor } from './interceptors/jwt-interceptor.service';
 import { AccessibilityComponent } from './modules/content/accessibility/accessibility.component';
 import { WebmapComponent } from './modules/content/webmap/webmap.component';
 
+// Decorador @Component define el componente Angular
 @Component({
-  selector: 'app-root',
-  standalone: true,
+  selector: 'app-root', // Selector del componente
+  standalone: true, // Componente independiente
   imports: [
     RouterOutlet, 
     LoginComponent, 
@@ -39,19 +40,20 @@ import { WebmapComponent } from './modules/content/webmap/webmap.component';
   providers: [
     ApiService,
     AuthService,
+    // Proveedor del interceptor JWT para manejo de tokens
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
-
   ],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  templateUrl: './app.component.html', // Plantilla HTML del componente
+  styleUrls: ['./app.component.css'], // Estilos CSS del componente
 })
 
 export class AppComponent implements OnDestroy, OnInit {
-  showSearchbox: boolean = true;
-  private visibilitySubscription: Subscription;
-  message: string = ''; // Inicializar la propiedad con un valor por defecto
+  showSearchbox: boolean = true; // Controla la visibilidad de la barra de búsqueda
+  private visibilitySubscription: Subscription; // Suscripción a cambios de visibilidad
+  message: string = ''; // Inicializa la propiedad con un valor por defecto
   isDropdownOpen = false; // Estado del dropdown
 
+  // Constructor para inyectar dependencias y suscribirse a cambios de visibilidad
   constructor(
     private visibilityService: VisibilityService,
     private loginService: LoginService,
@@ -59,42 +61,47 @@ export class AppComponent implements OnDestroy, OnInit {
     private apiService: ApiService
   ) {
     this.visibilitySubscription = this.visibilityService.showSearchBox$.subscribe(visible => {
-      this.showSearchbox = visible;
+      this.showSearchbox = visible; // Actualiza la visibilidad de la barra de búsqueda
     });
   }
 
+  // Método del ciclo de vida de Angular, se llama cuando el componente se inicializa
   ngOnInit() {
-    // Llamar al método del servicio cuando el componente se inicialice
+    // Llama al método del servicio API para obtener un mensaje de prueba
     this.apiService.getTestMessage().subscribe(
       data => {
-        this.message = data.message; // Almacenar el mensaje de la API
-        console.info(this.message);
+        this.message = data.message; // Almacena el mensaje de la API
+        console.info(this.message); // Muestra el mensaje en la consola
       },
       error => {
-        console.error('Error al obtener el mensaje de la API', error);
+        console.error('Error al obtener el mensaje de la API', error); // Muestra el error en la consola
       }
     );
   }
 
+  // Decorador @HostListener para escuchar eventos de click en el documento
   @HostListener('document:click', ['$event'])
   handleClick(event: Event) {
     const target = event.target as HTMLElement;
+    // Cierra el dropdown si el clic no es dentro del dropdown
     if (!target.closest('.dropdown')) {
       this.isDropdownOpen = false;
     }
   }
 
+  // Método para alternar la visibilidad del dropdown
   toggleDropdown(event: Event) {
-    event.stopPropagation();
-    this.isDropdownOpen = !this.isDropdownOpen;
+    event.stopPropagation(); // Evita la propagación del evento de clic
+    this.isDropdownOpen = !this.isDropdownOpen; // Alterna el estado del dropdown
   }
 
+  // Método para cerrar sesión
   logout() {
-    this.loginService.logout();
+    this.loginService.logout(); // Llama al servicio de logout
   }
-  
 
+  // Método del ciclo de vida de Angular, se llama cuando el componente se destruye
   ngOnDestroy() {
-    this.visibilitySubscription.unsubscribe();
+    this.visibilitySubscription.unsubscribe(); // Cancela la suscripción a cambios de visibilidad
   }
 }
