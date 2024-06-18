@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VisibilityService } from '../../../shared/services/visibility/visibility.service'; 
 import { PricingService } from './service/pricing.service';
+import { Router } from '@angular/router';
 
 // Interfaz que define la estructura de una suscripción
 interface Suscripcion {
@@ -27,12 +28,13 @@ export class PricingComponent implements OnInit, OnDestroy {
   suscripciones: Suscripcion[] = []; // Almacena la lista de suscripciones
 
   // Constructor para inyectar dependencias
-  constructor(private visibilityService: VisibilityService, private pricingService: PricingService) {}
+  constructor(private visibilityService: VisibilityService, private pricingService: PricingService, private router: Router) {}
 
   // Método para suscribirse a una suscripción específica
   subscribeToSuscripcion(suscripcionId: number) {
     this.pricingService.subscribeToSuscripcion(suscripcionId).subscribe(response => {
       console.log(response);
+      this.router.navigate(['/home']);
       // Manejar la respuesta, mostrar mensaje al usuario, etc.
     }, error => {
       console.error(error);
